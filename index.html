@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>depression detection using machine_learning</title>
     
+    <!-- === SEO Optimization === -->
+    <title>Depression Detection Using Machine Learning | AI Mental Health</title>
+    <meta name="description" content="An advanced Machine Learning and AI-driven web application to detect signs of depression through linguistic patterns and sentiment analysis.">
+    <meta name="keywords" content="depression detection, machine learning, AI, sentiment analysis, mental health AI, linguistic patterns, text analysis">
+    <meta name="author" content="depression_detection">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Depression Detection Using Machine Learning">
+    <meta property="og:description" content="AI model trained to detect signs of depression from text and linguistic patterns.">
+    <meta property="og:url" content="https://depression-detection.example.com/">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Depression Detection Using Machine Learning">
+    <meta name="twitter:description" content="AI model trained to detect signs of depression from text and linguistic patterns.">
+
     <!-- Modern Typography: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +70,7 @@
             justify-content: center;
             overflow: hidden; 
             position: relative;
+            padding: 20px;
         }
 
         /* === Animated Background Elements === */
@@ -161,6 +178,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: capitalize;
+            line-height: 1.2;
         }
 
         .header p {
@@ -343,6 +361,89 @@
         button.loading i {
             display: none;
         }
+
+        /* === Responsive Styles for Mobile === */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+                /* Allow scrolling on mobile if the content is taller than the screen */
+                overflow-y: auto;
+                align-items: flex-start; 
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .glass-card {
+                padding: 32px 24px;
+                border-radius: 20px;
+            }
+
+            .header {
+                margin-bottom: 32px;
+            }
+
+            .header .icon-container {
+                width: 54px;
+                height: 54px;
+                margin-bottom: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                font-size: 0.95rem;
+            }
+
+            textarea {
+                height: 130px;
+                padding: 20px;
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 16px;
+                font-size: 1.05rem;
+            }
+
+            .result-container.active {
+                padding: 24px 20px;
+            }
+
+            .result-value {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            /* Adjust blobs for smaller screens */
+            .blob {
+                filter: blur(60px);
+            }
+            .blob-1 {
+                width: 300px;
+                height: 300px;
+            }
+            .blob-2 {
+                width: 350px;
+                height: 350px;
+            }
+            .blob-3 {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 24px 16px;
+            }
+            .header h1 {
+                font-size: 1.4rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -439,6 +540,13 @@
                 // Remove loading state
                 btn.classList.remove('loading');
                 btn.disabled = false;
+
+                // On mobile, scroll to the result if it's off-screen
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }, 100);
+                }
 
             }, 1200); // 1.2s fake loading
         });
